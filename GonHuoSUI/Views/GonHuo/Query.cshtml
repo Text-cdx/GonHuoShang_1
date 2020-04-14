@@ -1,0 +1,85 @@
+﻿@using GonHuoSModel;
+@using GonHuoSUI.Models.dto;
+@{
+    ViewBag.Title = "Query";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var lis = ViewBag.Gonhuo as List<GonhuoShang>;
+    var s = ViewBag.dto1 as QueryTJDto;
+}
+<form action="@Url.Action("Query")">
+    <div class="container">
+        <div class="row">
+            <a href="@Url.Action("AddResult")">新增</a>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                类型
+                @Html.DropDownList("GType", null, htmlAttributes: new { @class = "form-control", @style = "width:100px;" })
+            </div>
+            <div class="col-md-3">
+                <label>名称</label>
+                <input type="text" name="GName" value="@s.gname" />
+            </div>
+            <div class="col-md-5">
+                修改时间:
+                <input type="date" name="State" value="@Convert.ToDateTime(s.State).ToString("yyyy-MM-dd")" /> 到
+                <input type="date" name="End" value="@Convert.ToDateTime(s.End).ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="col-md-1">
+                <button type="submit">查询</button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table table-hover table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>供货商类型</th>
+                        <th>邮箱</th>
+                        <th>邮编</th>
+                        <th>联系电话</th>
+                        <th>添加时间</th>
+                        <th>修改时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in lis)
+                        {
+                            <tr>
+                                <td>@item.Gid</td>
+                                <td>@item.GName</td>
+                                <td>@item.Type.TName</td>
+                                <td>@item.Email</td>
+                                <td>@item.Youbian</td>
+                                <td>@item.Phone</td>
+                                <td>@item.TTime</td>
+                                <td>@item.XTime</td>
+                                <td>
+                                    <a href="@Url.Action("UpdateResult", new {id=item.Gid })">修改</a> |
+                                    <a href="@Url.Action("DeleteResult", new {id=item.Gid })">删除</a> |
+                                    <a href="@Url.Action("QueryAddress", new {id=item.Gid })">地址维护</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row form-inline">
+                <button class="btn btn-success" type="submit" name="first">首页</button>
+                <button class="btn btn-success" type="submit" name="up">上一页</button>
+                <input style="width:70px;" class="form-control" value="@ViewBag.PageIndex" type="text" name="PageIndex" />
+                <button class="btn btn-success" type="submit" name="go">Go</button>
+                <button class="btn btn-success" type="submit" name="next">下一页</button>
+                <button class="btn btn-success" type="submit" name="last">尾页</button>
+                <label>共计 @ViewBag.Count 条 / @ViewBag.PageCount 页</label>
+            </div>
+    </div>
+</form>
+
+

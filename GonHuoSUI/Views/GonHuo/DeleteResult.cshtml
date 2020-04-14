@@ -1,0 +1,47 @@
+﻿@using GonHuoSModel;
+@{
+    ViewBag.Title = "DeleteResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form action="@Url.Action("Dele", new {id=Model.Gid })" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                名称
+                <input type="text" name="GName" value="@Model.GName" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                类型
+                @Html.DropDownList("GType", null, htmlAttributes: new { @class = "form-control", @style = "width:100px;" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                邮箱
+                <input type="text" name="Email" value="@Model.Email" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                邮编
+                <input type="text" name="Youbian" value="@Model.Youbian" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                联系电话
+                <input type="text" name="Phone" value="@Model.Phone" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                地址
+                <input type="text" name="GAddress" value="@Model.GAddress" class="form-control" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-4 text-right">
+                <button type="submit" class="btn btn-success">删除</button>
+                <a href="@Url.Action("Query")" class="btn btn-success">返回列表</a>
+            </div>
+        </div>
+    </div>
+</form>
+

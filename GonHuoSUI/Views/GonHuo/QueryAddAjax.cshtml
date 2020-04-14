@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "QueryAddAjax";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            名称
+            <input type="text" name="GName" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            类型
+            @Html.DropDownList("GType", null, htmlAttributes: new { @class = "form-control", @style = "width:100px;" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            邮箱
+            <input type="text" name="Email" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            邮编
+            <input type="text" name="Youbian" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            联系电话
+            <input type="text" name="Phone" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            地址
+            <input type="text" name="GAddress" class="form-control" />
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-md-4 text-right">
+            <button type="button" id="btnAdd" class="btn btn-success">添加</button>
+            <a href="@Url.Action("Queryssss")" class="btn btn-success">返回列表</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnAdd").click(addAction);
+        });
+
+        function addAction() {
+            //取值
+            var gNamevalue = $("[name=GName]").val();
+            var gType = $("[name=GType]").val();
+            var emailvalue = $("[name=Email]").val();
+            var youbianvalue = $("[name=Youbian]").val();
+            var phonevalue = $("[name=Phone]").val();
+            var gAddressvalue = $("[name=GAddress]").val();
+
+            //var formValues = $("form").serializeArray();
+
+            $.ajax({
+                url: "@Url.Action("AddAjax")",
+                data: { GName: gNamevalue, GType: gType, Email: emailvalue, Youbian: youbianvalue, Phone: phonevalue, GAddress: gAddressvalue },
+                dataType: "json",
+                type: "get",
+                success: function (result) {
+                    alert(result.Msg);
+                }
+            });
+        };
+    </script>
+</div>
+

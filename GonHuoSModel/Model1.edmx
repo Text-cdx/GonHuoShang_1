@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GonHuoShangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressBiao">
+          <Key>
+            <PropertyRef Name="Aid" />
+          </Key>
+          <Property Name="Aid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gid" Type="int" Nullable="false" />
+          <Property Name="Aphone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TTime" Type="datetime" Nullable="false" />
+          <Property Name="XTime" Type="datetime" Nullable="false" />
+          <Property Name="ZhuangTai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GonhuoShang">
+          <Key>
+            <PropertyRef Name="Gid" />
+          </Key>
+          <Property Name="Gid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GType" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Youbian" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TTime" Type="datetime" Nullable="false" />
+          <Property Name="XTime" Type="datetime" Nullable="false" />
+          <Property Name="ZhuangTai" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Tid" />
+          </Key>
+          <Property Name="Tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TTime" Type="datetime" Nullable="false" />
+          <Property Name="XTime" Type="datetime" Nullable="false" />
+          <Property Name="ZhuangTai" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_GonhuoShang_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="GonhuoShang" Type="Self.GonhuoShang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Tid" />
+            </Principal>
+            <Dependent Role="GonhuoShang">
+              <PropertyRef Name="GType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GonHuoShangModelStoreContainer">
+          <EntitySet Name="AddressBiao" EntityType="Self.AddressBiao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GonhuoShang" EntityType="Self.GonhuoShang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GonhuoShang_Type" Association="Self.FK_GonhuoShang_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="GonhuoShang" EntitySet="GonhuoShang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GonHuoShangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AddressBiao">
+          <Key>
+            <PropertyRef Name="Aid" />
+          </Key>
+          <Property Name="Aid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gid" Type="Int32" Nullable="false" />
+          <Property Name="Aphone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="XTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ZhuangTai" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GonhuoShang">
+          <Key>
+            <PropertyRef Name="Gid" />
+          </Key>
+          <Property Name="Gid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GType" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Youbian" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="XTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ZhuangTai" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_GonhuoShang_Type" FromRole="GonhuoShang" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="Tid" />
+          </Key>
+          <Property Name="Tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="XTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ZhuangTai" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GonhuoShang" Relationship="Self.FK_GonhuoShang_Type" FromRole="Type" ToRole="GonhuoShang" />
+        </EntityType>
+        <Association Name="FK_GonhuoShang_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="GonhuoShang" Type="Self.GonhuoShang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Tid" />
+            </Principal>
+            <Dependent Role="GonhuoShang">
+              <PropertyRef Name="GType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GonHuoShangEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressBiao" EntityType="Self.AddressBiao" />
+          <EntitySet Name="GonhuoShang" EntityType="Self.GonhuoShang" />
+          <EntitySet Name="Type" EntityType="Self.Type" />
+          <AssociationSet Name="FK_GonhuoShang_Type" Association="Self.FK_GonhuoShang_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="GonhuoShang" EntitySet="GonhuoShang" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GonHuoShangModelStoreContainer" CdmEntityContainer="GonHuoShangEntities">
+          <EntitySetMapping Name="AddressBiao">
+            <EntityTypeMapping TypeName="GonHuoShangModel.AddressBiao">
+              <MappingFragment StoreEntitySet="AddressBiao">
+                <ScalarProperty Name="Aid" ColumnName="Aid" />
+                <ScalarProperty Name="AName" ColumnName="AName" />
+                <ScalarProperty Name="Gid" ColumnName="Gid" />
+                <ScalarProperty Name="Aphone" ColumnName="Aphone" />
+                <ScalarProperty Name="AAddress" ColumnName="AAddress" />
+                <ScalarProperty Name="TTime" ColumnName="TTime" />
+                <ScalarProperty Name="XTime" ColumnName="XTime" />
+                <ScalarProperty Name="ZhuangTai" ColumnName="ZhuangTai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GonhuoShang">
+            <EntityTypeMapping TypeName="GonHuoShangModel.GonhuoShang">
+              <MappingFragment StoreEntitySet="GonhuoShang">
+                <ScalarProperty Name="Gid" ColumnName="Gid" />
+                <ScalarProperty Name="GName" ColumnName="GName" />
+                <ScalarProperty Name="GType" ColumnName="GType" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Youbian" ColumnName="Youbian" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="GAddress" ColumnName="GAddress" />
+                <ScalarProperty Name="TTime" ColumnName="TTime" />
+                <ScalarProperty Name="XTime" ColumnName="XTime" />
+                <ScalarProperty Name="ZhuangTai" ColumnName="ZhuangTai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="GonHuoShangModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="TName" ColumnName="TName" />
+                <ScalarProperty Name="TTime" ColumnName="TTime" />
+                <ScalarProperty Name="XTime" ColumnName="XTime" />
+                <ScalarProperty Name="ZhuangTai" ColumnName="ZhuangTai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

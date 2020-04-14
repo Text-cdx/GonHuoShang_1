@@ -1,0 +1,38 @@
+﻿@using GonHuoSModel;
+@{
+    ViewBag.Title = "DeleteAddressResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var ids = ViewBag.id;
+}
+
+<form action="@Url.Action("DeleAddres", new {id=Model.Aid })" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                姓名
+                <input type="text" name="AName" value="@Model.AName" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                供货商编号
+                <input type="text" name="Gid" value="@Model.Gid" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                联系电话
+                <input type="text" name="Aphone" value="@Model.Aphone" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                地址
+                <input type="text" name="AAddress" value="@Model.AAddress" class="form-control" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-4 text-right">
+                <button type="submit" class="btn btn-success">删除</button>
+                <a href="@Url.Action("Query")" class="btn btn-success">返回列表</a>
+            </div>
+        </div>
+    </div>
+</form>
+
